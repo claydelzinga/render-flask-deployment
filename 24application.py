@@ -1,3 +1,4 @@
+#This is an application to solve the 24 game.
 import itertools
 from flask import Flask, render_template, request
 import os

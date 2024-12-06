@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24 Game Solver</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #e7f3ff;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #cce7ff;
+        }
+        .about-section {
+            background: #f1f1f1;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>24 Game Solver</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="num1">First Number:</label>
+            <input type="number" name="num1" id="num1" required>
+        </div>
+        <div class="form-group">
+            <label for="num2">Second Number:</label>
+            <input type="number" name="num2" id="num2" required>
+        </div>
+        <div class="form-group">
+            <label for="num3">Third Number:</label>
+            <input type="number" name="num3" id="num3" required>
+        </div>
+        <div class="form-group">
+            <label for="num4">Fourth Number:</label>
+            <input type="number" name="num4" id="num4" required>
+        </div>
+        <button type="submit">Find Solutions</button>
+    </form>
+
+    {% if solutions %}
+    <h2>Solutions:</h2>
+    <ul id="solution-list">
+        {% for solution in solutions %}
+            <li class="solution-item" {% if loop.index > 1 %}style="display: none;"{% endif %}>
+                {{ solution }}
+            </li>
+        {% endfor %}
+    </ul>
+    {% if solutions|length > 1 %}
+        <button id="toggle-button" onclick="toggleSolutions()">See More Solutions</button>
+    {% endif %}
+{% endif %}
+
+<script>
+    function toggleSolutions() {
+        const solutionItems = document.querySelectorAll('.solution-item');
+        const button = document.getElementById('toggle-button');
+        let hidden = false;
+
+        solutionItems.forEach((item, index) => {
+            if (index > 0) {
+                if (item.style.display === "none") {
+                    item.style.display = "block";
+                    hidden = true;
+                } else {
+                    item.style.display = "none";
+                }
+            }
+        });
+
+        button.textContent = hidden ? "See Fewer Solutions" : "See More Solutions";
+    }
+</script>
+
+    <div class="about-section">
+        <h2>Why I Built This Program</h2>
+        <p>When I discovered that many AI algorithms struggled with reasoning tasks that required arithmetic and logical sequencing—such as finding combinations of numbers and operations to achieve a target value like 24—I saw an opportunity to explore the problem computationally.<p>
+        </p>
+        This script takes four numbers and explores all possible arrangements of these numbers combined with arithmetic operations (×, +, −, ÷) to achieve a total of 24.<p></p>
+    </div>
+</body>
+</html>

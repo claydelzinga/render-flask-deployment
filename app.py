@@ -1,9 +1,7 @@
-#This is an application to solve the 24 game.
 import itertools
 from flask import Flask, render_template, request
-import os
 
-app = Flask(__name__, template_folder='/Users/clayelzinga/Desktop/Work_School/School/Lit_Review/24application/')
+app = Flask(__name__)
 
 operations = ['+', '-', '*', '/']
 
@@ -87,7 +85,6 @@ def home():
     solutions = None
     if request.method == "POST":
         try:
-            # Get each number from the form
             num1 = int(request.form.get("num1"))
             num2 = int(request.form.get("num2"))
             num3 = int(request.form.get("num3"))
@@ -103,8 +100,3 @@ def home():
 
 if __name__ == "__main__":
     app.run()
-    
-
-
-
-

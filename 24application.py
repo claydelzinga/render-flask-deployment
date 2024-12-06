@@ -99,7 +99,7 @@ def home():
                 solutions = ["No solutions found."]
         except ValueError:
             solutions = ["Invalid input. Please enter four numbers."]
-    return render_template("24application.html", solutions=solutions)
+    return render_template("index.html", solutions=solutions)
 
 if __name__ == "__main__":
     app.run()
